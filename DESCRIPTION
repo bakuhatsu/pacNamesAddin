@@ -1,0 +1,12 @@
+Package: pacNamesAddin
+Type: Package
+Title: RStudio Addin for insertion of package names.
+Version: 0.1.0
+Author: Sven K Nelson
+Maintainer: Sven Nelson <sven.nelson100@email.wsu.edu>
+Description: An addin for automatic insertion of package names in RStudio.
+License: What license is it under?
+LazyData: TRUE
+Imports:
+  rstudioapi,
+  stringr

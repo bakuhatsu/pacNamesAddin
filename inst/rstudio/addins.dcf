@@ -1,0 +1,9 @@
+Name: Insert 1 package::func
+Descriptions: Add the package name preposition to a non-base function.
+Binding: addPackageAtCursor
+Interactive: FALSE
+
+Name: Insert ALL package::func
+Descriptions: Adds the package name preposition to all non-base functions in a document.
+Binding: addPackageNames
+Interactive: FALSE
