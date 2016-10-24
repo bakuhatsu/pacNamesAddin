@@ -1,6 +1,6 @@
 # pacNamesAddin
 RStudio Addin for insertion of package names.
-### Installing and loading the `microarrayTools` package:
+### Installing and loading the `pacNamesAddin` package:
 Installing through GitHub requires the `devtools` package, so instructions for installing and loading that package are provided below.
 ```r
 ## Install and load devtools for loading packages from GitHub
