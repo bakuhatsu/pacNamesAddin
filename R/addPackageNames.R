@@ -3,7 +3,7 @@
 # Sven Nelson                         #
 # function to package_name::function  #
 #######################################
-
+#test
 require(stringr)
 require(rstudioapi)
 
