@@ -13,5 +13,5 @@ Now you should be ready to install and then load the `pacNamesAddin` package
 ```r
 ## Install pacNamesAddin package to get the RStudio addins for automatic insertion of package names
 install_github("bakuhatsu/pacNamesAddin") # syntax for installing from GitHub: username/library
-library(pacNamesAddin) # To load the package
+library(pacNamesAddin) # To load the package (not necessary to use the addin)
 ```
