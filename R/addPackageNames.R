@@ -117,6 +117,6 @@ insertAtCursor <- function() {
   # Parse row to identify functions
   parsedText <- utils::getParseData(parse(text = selectedRow))
   functionInfo <- dplyr::filter(parsedText, col1 == cursorPos["column"] & token == "SYMBOL_FUNCTION_CALL")
-  funcName <- functionInfo$text
+  funcName <- functionInfo$text #test
   return(list(funcName = funcName, fileID = context$id, loc = cursorPos))
 }
