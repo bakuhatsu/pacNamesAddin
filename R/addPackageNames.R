@@ -33,26 +33,28 @@ addPackageNames <- function() { # include _ and . in func names...
       funcName <- parsedFile$text[i]
       # get the package name associated with that function
       pacName <- utils::packageName(environment(get(funcName))) # gets package name for a given function
-      # Append "::" to the end of the output for package name
-      pacName <- paste(pacName, "::", sep = "")
+      if (!is.null(pacName)) {
+        # Append "::" to the end of the output for package name
+        pacName <- paste(pacName, "::", sep = "")
 
-      currentLine <- parsedFile$line1[i]
-      # create location object for the location to insert "package_name::"
-      loc <- rstudioapi::document_position(row = currentLine, column = parsedFile$col1[i])
-      pacNamesAdded <- pacNamesAdded + 1
+        currentLine <- parsedFile$line1[i]
+        # create location object for the location to insert "package_name::"
+        loc <- rstudioapi::document_position(row = currentLine, column = parsedFile$col1[i])
+        pacNamesAdded <- pacNamesAdded + 1
 
-      #pass this info to rstudioapi::insertText
-      rstudioapi::insertText(text = pacName, id = currentFile$id, location = loc)
+        #pass this info to rstudioapi::insertText
+        rstudioapi::insertText(text = pacName, id = currentFile$id, location = loc)
 
-      # if (parsedFile[line1 == line1[i]] > 1) {
-       onSameLine <- dplyr::filter(parsedFile, line1 == currentLine)
-       if (nrow(onSameLine) > 1) {
-         #Add length of packageName to all on the same line
-         parsedFile[parsedFile$line1 == currentLine,]$col1 <- parsedFile[parsedFile$line1 == currentLine,]$col1 + nchar(pacName)
-         # This line not strictly necessary, but might be usefull if I ever want to use col2
-         parsedFile[parsedFile$line1 == currentLine,]$col2 <- parsedFile[parsedFile$line1 == currentLine,]$col2 + nchar(pacName)
-         #(doesn't matter that it adds to the previous ones because i is only increasing.)
-       }
+        # if (parsedFile[line1 == line1[i]] > 1) {
+        onSameLine <- dplyr::filter(parsedFile, line1 == currentLine)
+        if (nrow(onSameLine) > 1) {
+          #Add length of packageName to all on the same line
+          parsedFile[parsedFile$line1 == currentLine,]$col1 <- parsedFile[parsedFile$line1 == currentLine,]$col1 + nchar(pacName)
+          # This line not strictly necessary, but might be usefull if I ever want to use col2
+          parsedFile[parsedFile$line1 == currentLine,]$col2 <- parsedFile[parsedFile$line1 == currentLine,]$col2 + nchar(pacName)
+          #(doesn't matter that it adds to the previous ones because i is only increasing.)
+        }
+      }
     }
   }
   # renames functions from the current package, which is probably unnecessary.
